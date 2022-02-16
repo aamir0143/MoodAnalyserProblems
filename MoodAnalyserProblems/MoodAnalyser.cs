@@ -4,30 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace MoodAnalyserProblems
-{
-    /// <summary>
-    /// Creating Mood Analyser Class.
-    /// </summary>
+{/// <summary>
+ /// Class to check a message, ability to analyse and respond happy or sad Mood
+ /// </summary>
     public class MoodAnalyser
     {
-        //Declaring Variables.
+        //Declaring varibale(Refactor)
         public string message;
-        //Parameterized Constructors.
-        public MoodAnalyser(string message)
+        //Constructor to initialize message(Refactor) 
+        public MoodAnalyser(string message) 
         {
             this.message = message;
         }
-        /// <summary>
-        /// Creating Method for Happy Or Sad Mood.
-        /// </summary>
-        /// <returns></returns>
-        public string AnalyseMood()
+        //Method to analyse the mood from  the given message(UC1)
+        public string AnalyseMood() 
         {
-            if (this.message.ToLower().Contains("sad"))
+            //Handling exception if user provide null value(UC2)
+            try
             {
-                return "sad";
+                if (message.ToLower().Contains("sad"))
+                {
+                    return "sad";
+                }
+                else
+                {
+                    return "happy";
+                }
             }
-            else
+            catch (NullReferenceException)
             {
                 return "happy";
             }
