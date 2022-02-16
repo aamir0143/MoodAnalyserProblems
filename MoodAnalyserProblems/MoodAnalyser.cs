@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace MoodAnalyserProblems
+namespace MoodAnalyserProblems 
 {
     /// <summary>
-    /// Creating Mood Analyser Class.
+    /// Class to check a message, ability to analyse and respond happy or sad Mood
     /// </summary>
-    public class MoodAnalyser
+    public class MoodAnalyser 
     {
-        //Declaring Variables.
+        //Declaring varibale
         public string message;
-        //Parameterized Constructors.
-        public MoodAnalyser(string message)
+        //Constructor to initialize message 
+        public MoodAnalyser(string message) 
         {
             this.message = message;
         }
-        /// <summary>
-        /// Creating Method for Happy Or Sad Mood.
-        /// </summary>
-        /// <returns></returns>
-        public string AnalyseMood()
+        //Method to analyse the mood from  the given message
+        public string AnalyseMood() 
         {
-            if (this.message.ToLower().Contains("sad"))
+            if (message.ToLower().Contains("sad"))
             {
                 return "sad";
             }
