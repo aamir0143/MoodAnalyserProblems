@@ -5,9 +5,13 @@ namespace MoodAnalyserTestProject
     /// Different Test Cases For Analysing Mood
     /// </summary>
     [TestClass]
-    public class MoodAnalyserTestClass 
+    public class TestingMood 
     {
+<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
         //Method to test sad message(UC1-TC1.1)
+=======
+        //Method to test sad message
+>>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
         [TestCategory("SAD Message")]
         [TestMethod]
         public void GivenSadMessageReturnSadMood() 
@@ -22,7 +26,11 @@ namespace MoodAnalyserTestProject
             ///Asert
             Assert.AreEqual(expected, actual);
         }
+<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
         //Method to test happy message(UC1-TC1.2)
+=======
+        //Method to test happy message
+>>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
         [TestCategory("HAPPY Message")]
         [TestMethod]
         public void GivenAnyMessageReturnHappyMood() 
@@ -35,6 +43,7 @@ namespace MoodAnalyserTestProject
             ///Act
             string actual = mood.AnalyseMood();
             ///Asert
+<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
             Assert.AreEqual(expected, actual);
         }
         //Method to test happy message(UC2-TC2.1)
@@ -50,6 +59,8 @@ namespace MoodAnalyserTestProject
             MoodAnalyser mood = new MoodAnalyser(msg);
             string actual = mood.AnalyseMood();
             ///Asert
+=======
+>>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
             Assert.AreEqual(expected, actual);
         }
     }
