@@ -1,22 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyserProblems;
 namespace MoodAnalyserTestProject
-<<<<<<< HEAD
-{// <summary>
-    /// Different Test Cases For Analysing Mood
-    /// </summary>
-    [TestClass]
-    public class TestingMood 
-    {
-<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
-        //Method to test sad message(UC1-TC1.1)
-=======
-        //Method to test sad message
->>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
-        [TestCategory("SAD Message")]
-        [TestMethod]
-        public void GivenSadMessageReturnSadMood() 
-=======
 {
     /// <summary>
     /// Different Test Cases For Analysing Mood
@@ -25,10 +9,9 @@ namespace MoodAnalyserTestProject
     public class TestingMood
     {
         //Method to test sad message(UC1-TC1.1)
-        [TestCategory("SAD Message")]
+        [TestCategory("SAD MESSAGE")]
         [TestMethod]
-        public void GivenSadMessageReturnSadMood()
->>>>>>> UC2_HandlingException
+        public void GivenSadMessageReturnSadMood() 
         {
             ///AAA
             ///Arange
@@ -40,21 +23,10 @@ namespace MoodAnalyserTestProject
             ///Asert
             Assert.AreEqual(expected, actual);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
         //Method to test happy message(UC1-TC1.2)
-=======
-        //Method to test happy message
->>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
-        [TestCategory("HAPPY Message")]
-        [TestMethod]
-        public void GivenAnyMessageReturnHappyMood() 
-=======
-        //Method to test happy message(UC1-TC1.2)
-        [TestCategory("HAPPY Message")]
+        [TestCategory("HAPPY MESSAGE")]
         [TestMethod]
         public void GivenHappyMessageReturnHappyMood() 
->>>>>>> UC2_HandlingException
         {
             ///AAA
             ///Arange
@@ -64,14 +36,10 @@ namespace MoodAnalyserTestProject
             ///Act
             string actual = mood.AnalyseMood();
             ///Asert
-<<<<<<< HEAD
-<<<<<<< HEAD:MoodAnalyserTestProject/UnitTest1.cs
-=======
->>>>>>> UC2_HandlingException
             Assert.AreEqual(expected, actual);
         }
         //Method to test happy message(UC2-TC2.1)
-        [TestCategory("Null Exception")]
+        [TestCategory("NULL EXCEPTION")]
         [TestMethod]
         public void GivenNullMessageException() 
         {
@@ -79,20 +47,53 @@ namespace MoodAnalyserTestProject
             ///Arange
             string msg = null;
             string expected = "happy";
-<<<<<<< HEAD
-            //string actual = null;
             MoodAnalyser mood = new MoodAnalyser(msg);
+            ///Act
             string actual = mood.AnalyseMood();
             ///Asert
-=======
->>>>>>> UC1_HappyOrSadMood:MoodAnalyserTestProject/TestingMood.cs
-=======
-            MoodAnalyser mood = new MoodAnalyser(msg);
-            //Act
-            string actual = mood.AnalyseMood();
-            ///Asert
->>>>>>> UC2_HandlingException
             Assert.AreEqual(expected, actual);
+        }
+        //Method to test custom exception message(UC3-TC3.1)
+        [TestCategory("CUSTOM EXCEPTION")]
+        [TestMethod]
+        public void GivenCustomNullException()
+        {
+            ///AAA
+            ///Arange
+            string msg = null;
+            string expected = "Message should not be null";
+            MoodAnalyser mood = new MoodAnalyser(msg);
+            try
+            {
+                ///Act
+                string actual = mood.AnalyseMood();
+            }
+            catch (MoodAnalysisException e)
+            {
+                ///Asert
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+        //Method to test custom exception message(UC3-TC3.2)
+        [TestCategory("CUSTOM EXCEPTION")]
+        [TestMethod]
+        public void GivenCustomEmptyException() 
+        {
+            ///AAA
+            ///Arange
+            string msg = "";
+            string expected = "Message should not be empty";
+            MoodAnalyser mood = new MoodAnalyser(msg);
+            try
+            {
+                ///Act
+                string actual = mood.AnalyseMood();
+            }
+            catch (MoodAnalysisException e)
+            {
+                ///Asert
+                Assert.AreEqual(expected, e.Message);
+            }
         }
     }
 }
