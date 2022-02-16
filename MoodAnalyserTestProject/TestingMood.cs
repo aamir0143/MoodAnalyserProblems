@@ -6,39 +6,36 @@ namespace MoodAnalyserTestProject
     /// Different Test Cases For Analysing Mood
     /// </summary>
     [TestClass]
-    public class MoodAnalyserTestClass 
+    public class TestingMood 
     {
-        /// <summary>
-        /// TC 1.1: Given?I am in Sad Mood? message Should Return SAD.
-        /// </summary>
+        //Method to test sad message
+        [TestCategory("SAD Message")]
         [TestMethod]
         public void GivenSadMessageReturnSadMood() 
         {
             ///AAA
-            //Arrange
-            string message = "I am in SAD Mood";
+            ///Arange
+            string msg = "I am in SAD Mood";
             string expected = "sad";
-            MoodAnalyser mood = new MoodAnalyser(message);
-            //Act
+            MoodAnalyser mood = new MoodAnalyser(msg);
+            ///Act
             string actual = mood.AnalyseMood();
-            //Assert
+            ///Asert
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>
-        /// TC 1.2: Given?I am in Happy Mood? message Should Return HAPPY.
-        /// </summary>
+        //Method to test happy message
+        [TestCategory("HAPPY Message")]
         [TestMethod]
         public void GivenHappyMessageReturnHappyMood() 
         {
             ///AAA
-            //Arrange
-            string message = "I am in HAPPY Mood";
+            ///Arange
+            string msg = "I am in ANY Mood";
             string expected = "happy";
-            MoodAnalyser mood = new MoodAnalyser(message);
-            //Act
+            MoodAnalyser mood = new MoodAnalyser(msg);
+            ///Act
             string actual = mood.AnalyseMood();
-            //Assert
+            ///Asert
             Assert.AreEqual(expected, actual);
         }
     }
