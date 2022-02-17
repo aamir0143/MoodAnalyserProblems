@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,18 @@ namespace MoodAnalyserProblems
     /// </summary>
     public class MoodAnalyser
     {
-        //Declaring varibale(Refactor)
-        public string message;
+        //Declaring Property(Refactor)
+        [Required(ErrorMessage = "{0} should not be null or empty")]
+        public string Message { get; set; }
         //Default constructor(UC4)
         public MoodAnalyser()
         {
             Console.WriteLine("Default constructor");
         }
         //Constructor to initialize message(Refactor) 
-        public MoodAnalyser(string message)
+        public MoodAnalyser(string Message)
         {
-            this.message = message;
+            this.Message = Message;
         }
         //Method to analyse the mood from  the given message(UC1)
         public string AnalyseMood() 
@@ -29,11 +31,11 @@ namespace MoodAnalyserProblems
             try
             {
                 //In case of null or empty mood throw custom exception MoodAnalysisException(UC3)
-                if (this.message.Equals(null))
+                if (this.Message.Equals(null))
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.NULL_MOOD_EXCEPTION, "Message should not be null");
-                else if (this.message.Equals(string.Empty))
+                else if (this.Message.Equals(string.Empty))
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.EMPTY_MOOD_EXCEPTION, "Message should not be empty");
-                else if (message.ToLower().Contains("sad"))
+                else if (Message.ToLower().Contains("sad"))
                     return "sad";
                 else
                     return "happy";
