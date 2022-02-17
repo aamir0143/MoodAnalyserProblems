@@ -41,7 +41,7 @@ namespace MoodAnalyserTestProject
         //Method to test happy message(UC1-TC1.2)
         [TestCategory("HAPPY MESSAGE")]
         [TestMethod]
-        public void GivenHappyMessageReturnHappyMood() 
+        public void GivenHappyMessageReturnHappyMood()
         {
             ///AAA
             ///Arange
@@ -137,7 +137,6 @@ namespace MoodAnalyserTestProject
             {
                 Assert.AreEqual(expected, actual.Message);
             }
-            expected.Equals(obj);
         }
         //Method to test so mood analyser class return contructor not found(UC4-TC4.3)
         [TestCategory("REFLECTION")]
@@ -232,6 +231,34 @@ namespace MoodAnalyserTestProject
             try
             {
                 string actual = reflector.InvokeAnalyserMethod("happy", "AnalyseMood");
+            }
+            catch (MoodAnalysisException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        //Method to set the field value and invoke method using reflection(UC7-TC7.1)
+        [TestCategory("REFLECTION")]
+        [TestMethod]
+        [DataRow("happy", "happy", "message")]
+        [DataRow("sad", "sad", "message")]
+        public void ReflectionReturnSetField(string value, string expected, string message)
+        {
+            string actual = reflector.SetField(value, message);
+            Assert.AreEqual(expected, actual);
+        }
+        //Method to set the field value with invalid field to throw exception(UC7-TC7.2&7.3)
+        [TestCategory("REFLECTION")]
+        [TestMethod]
+        [DataRow("happy", "Field is not found", "msg")]
+        [DataRow("sad", "Field is not found", "newmsg")]
+        [DataRow("", "Message should not be null", "message")]
+        [DataRow(null, "Message should not be null", "message")]
+        public void ReflectionReturnInvalidField(string value, string expected, string message)
+        {
+            try
+            {
+                string actual = reflector.SetField(value, message);
             }
             catch (MoodAnalysisException actual)
             {
