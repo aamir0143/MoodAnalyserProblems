@@ -10,7 +10,7 @@ namespace MoodAnalyserProblems
     /// <summary>
     /// Creating MoodAnalyserFactory To Specify Static Method To Create MoodAnalyser Object
     /// </summary>
-    public class MoodAnalyserFactory 
+    public class MoodAnalyserReflector
     {
         //Method To Create Mood Analyser Object Using Reflection(UC4)
         public object CreateMoodAnalyserObject(string className, string constructor)
@@ -57,6 +57,23 @@ namespace MoodAnalyserProblems
             else
             {
                 throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.CLASS_NOT_FOUND, "No Such Class");
+            }
+        }
+        //Method to Use Reflection To Invoke Method i.e analyseMood(UC6)
+        public string InvokeAnalyserMethod(string message, string methodName)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyser);
+                MethodInfo methodInfo = type.GetMethod(methodName);
+                MoodAnalyserReflector reflector = new MoodAnalyserReflector();
+                object moodAnalyserObject = reflector.CreateMoodAnalyserParameterizedObject("MoodAnalyserProblems.MoodAnalyser", "MoodAnalyser", message);
+                object info = methodInfo.Invoke(moodAnalyserObject, null);
+                return info.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.METHOD_NOT_FOUND, "No Such Method");
             }
         }
     }
