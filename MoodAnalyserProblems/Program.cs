@@ -17,9 +17,11 @@ namespace MoodAnalyserProblems
             //Displaying the welcome message
             Console.WriteLine("==========Welcome To Mood Analyser Problems==========");
             //Calling the mood analyser object(UC1)  
-            MoodAnalyser mood = new MoodAnalyser(msg);
-            string resMood = mood.AnalyseMood();
-            Console.WriteLine(resMood);
+            //MoodAnalyser mood = new MoodAnalyser(msg);
+            //string resMood = mood.AnalyseMood();
+            //Console.WriteLine(resMood);
+            Customer customer = new Customer();
+            customer.Name = "aamir";
             Console.ReadLine();
         }
     }

@@ -12,13 +12,18 @@ namespace MoodAnalyserProblems
     {
         //Declaring varibale(Refactor)
         public string message;
+        //Default constructor(UC4)
+        public MoodAnalyser()
+        {
+            Console.WriteLine("Default constructor");
+        }
         //Constructor to initialize message(Refactor) 
         public MoodAnalyser(string message)
         {
             this.message = message;
         }
         //Method to analyse the mood from  the given message(UC1)
-        public string AnalyseMood()
+        public string AnalyseMood() 
         {
             //Handling exception if user provide null or empty value(UC2&UC3)
             try
