@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace MoodAnalyserProblems
 {
-   /// <summary>
-  /// In case of NULL or Empty Mood throwing Custom Exception MoodAnalysisException(UC3)
-  /// </summary>
+    /// <summary>
+    /// In case of NULL or Empty Mood throwing Custom Exception MoodAnalysisException(UC3)
+    /// </summary>
     public class MoodAnalysisException : Exception
     {
         //Declaring exception type 

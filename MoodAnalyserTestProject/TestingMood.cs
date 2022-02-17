@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyserProblems;
 using System;
-
 namespace MoodAnalyserTestProject
 {
     /// <summary>
@@ -36,7 +35,7 @@ namespace MoodAnalyserTestProject
             string expected = "happy";
             MoodAnalyser mood = new MoodAnalyser(msg);
             ///Act
-            string actual = mood.AnalyseMood();
+            string actual = mood.AnalyseMood(); 
             ///Asert
             Assert.AreEqual(expected, actual);
         }
@@ -58,7 +57,7 @@ namespace MoodAnalyserTestProject
         //Method to test custom exception message(UC3-TC3.1)
         [TestCategory("CUSTOM EXCEPTION")]
         [TestMethod]
-        public void GivenCustomNullException()
+        public void TestCustomNullException()
         {
             ///AAA
             ///Arange
@@ -79,7 +78,7 @@ namespace MoodAnalyserTestProject
         //Method to test custom exception message(UC3-TC3.2)
         [TestCategory("CUSTOM EXCEPTION")]
         [TestMethod]
-        public void GivenCustomEmptyException() 
+        public void TestCustomEmptyException()
         {
             ///AAA
             ///Arange
@@ -98,7 +97,7 @@ namespace MoodAnalyserTestProject
             }
         }
         //Method to test so moodanalyser class return moodanalyser objects(UC4-TC4.1)
-        [TestCategory("Reflection")]
+        [TestCategory("REFLECTION")]
         [TestMethod]
         [DataRow("MoodAnalyserProblems.Customer", "Customer")]
         [DataRow("MoodAnalyserProblems.MoodAnalyser", "MoodAnalyser")]
@@ -119,7 +118,7 @@ namespace MoodAnalyserTestProject
             expected.Equals(obj);
         }
         //Method to test so mood analyser with diff class to return no class found(UC4-TC4.2)
-        [TestCategory("Reflection")]
+        [TestCategory("REFLECTION")]
         [TestMethod]
         [DataRow("MoodAnalyserProblems.Linklist", "Linklist", "The Given Class IS Not Found")]
         [DataRow("MoodAnalyserProblems.Stack", "Stack", "The Given Class IS Not Found")]
@@ -137,8 +136,8 @@ namespace MoodAnalyserTestProject
                 Assert.AreEqual(expected, actual.Message);
             }
         }
-        //Method to test so mood analyser class return  contructor not found(UC4-TC4.3)
-        [TestCategory("Reflection")]
+        //Method to test so mood analyser class return contructor not found(UC4-TC4.3)
+        [TestCategory("REFLECTION")]
         [TestMethod]
         [DataRow("MoodAnalyserProblems.MoodAnalyser", "Linklist", "The Given Constructor Is Not Found")]
         [DataRow("MoodAnalyserProblems.MoodAnalyser", "Customer", "The Given Constructor Is Not Found")]
@@ -154,6 +153,70 @@ namespace MoodAnalyserTestProject
             catch (MoodAnalysisException actual)
             {
                 Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        //Method to test moodanalyser class with parameter constructor to check if two objects are equal(UC5-TC5.1)
+        [TestCategory("REFLECTION")]
+        [TestMethod]
+        [DataRow("I am in HAPPY mood")]
+        [DataRow("I am in SAD mood")]
+        [DataRow("I am in ANY mood")]
+        public void GivenMessageReturnParameterizedConstructor(string message)
+        {
+            MoodAnalyser expected = new MoodAnalyser(message);
+            object obj = null;
+            try
+            {
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyser", "MoodAnalyser", message);
+
+            }
+            catch (MoodAnalysisException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+            obj.Equals(expected);
+        }
+        //Method to test moodanalyser with diff class with parameter constructor to throw error(UC5-TC5.2)
+        [TestCategory("REFLECTION")]
+        [TestMethod]
+        [DataRow("MoodAnalyser.Queues", "I am in Happy mood", "No Such Class")]
+        [DataRow("MoodAnalyser.Linkedlist", "I am in Sad mood", "No Such Class")]
+        [DataRow("MoodAnalyser.Stack", "I am in any mood", "No Such Class")]
+        public void GivenMessageReturnParameterizedClassNotFound(string className, string message, string expextedError)
+        {
+            MoodAnalyser expected = new MoodAnalyser(message);
+            object obj = null;
+            try
+            {
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterizedObject(className, "MoodAnalyser", message);
+
+            }
+            catch (MoodAnalysisException actual)
+            {
+                Assert.AreEqual(expextedError, actual.Message);
+            }
+        }
+        //Method to test moodanalyser with diff constructor with parameter constructor to throw error(UC5-TC5.3)
+        [TestCategory("REFLECTION")]
+        [TestMethod]
+        [DataRow("Customer", "I am in Happy mood", "No Such Constructor")]
+        [DataRow("Linkedlist", "I am in Sad mood", "No Such Constructor")]
+        [DataRow("Stack", "I am in any mood", "No Such Constructor")]
+        public void GivenMessageReturnParameterizedConstructorNotFound(string constructor, string message, string expextedError)
+        {
+            MoodAnalyser expected = new MoodAnalyser(message);
+            object obj = null;
+            try
+            {
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyser", constructor, message);
+
+            }
+            catch (MoodAnalysisException actual)
+            {
+                Assert.AreEqual(expextedError, actual.Message);
             }
         }
     }
